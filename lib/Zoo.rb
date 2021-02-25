@@ -14,24 +14,30 @@ def self.all
 end
 
 def find_by_species(species)
-    animals.map{|animal| animal.species==species}
+    animals.select{|animal| animal.species==species}
 end 
 
-def animal_species
-    result = []
-    animals.map do |animal| 
-       result << animal.species 
+    def animal_species
+        result = []
+        animals.map do |animal|
+            result << animal.species
+        end
+        result.uniq
     end
-    result.uniq
-    #do we need.all
 
-def animal_nickname
-    animals.map do |animal|
-    animal.nickname
-    #do we need .all ?
-    end 
-
-def self.find_by_location (location)
-    @@all.map{|zoo| zoo.location==location}
+    def animal_nickname
+        animals.map do |animal|
+        animal.nickname
+        #do we need .all ?
+        end
     end
+
+    def self.find_by_location (location)
+        @@all.select{|zoo| zoo.location==location}
+    end
+
+    def add_animal(animal)
+        animals << animal
+    end
+
 end
